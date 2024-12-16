@@ -73,7 +73,7 @@ constexpr Cost COST_FACTOR = 3600;
 constexpr UserCost DEFAULT_COST_PER_HOUR = 3600;
 constexpr UserCost DEFAULT_COST_PER_KM = 0;
 
-constexpr Priority MAX_PRIORITY = 100;
+constexpr Priority MAX_PRIORITY = 1000;
 constexpr double MAX_SPEED_FACTOR = 5.0;
 constexpr unsigned MAX_EXPLORATION_LEVEL = 5;
 
