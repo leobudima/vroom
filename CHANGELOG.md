@@ -18,7 +18,6 @@
 - Refactor heuristics to reduce code duplication (#1181)
 - Refactor `Matrix` template class (#1089)
 - Refactor to use `std::format` whenever possible (#1081)
-- Reduce complexity for recreation process (#1155)
 - Refactor `SolutionIndicators` (#1169)
 - Remove amount consistency checks in `parse` in favor of upstream checks in `Input` (#1086)
 - Reduce code duplication in routing wrappers (#1184)
@@ -40,10 +39,13 @@
 #### Core solving
 
 - Solution quality regression when using lots of skills (#1193)
+- Invalid route reached by `PriorityReplace` (#1162)
+- Account for gain and assigned tasks to pick priority-improving moves (#1212)
 - Crash due to wrong delivery values in some validity checks (#1164)
 - Crash when input is valid JSON but not an object (#1172)
 - Capacity array check consistency (#1086)
 - Segfault when using the C++ API with empty vehicles (#1187)
+- Solution "shadowing" when only comparing indicators (#1199)
 
 #### Internals
 
