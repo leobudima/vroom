@@ -2,7 +2,7 @@
 
 This file is part of VROOM.
 
-Copyright (c) 2015-2024, Julien Coupey.
+Copyright (c) 2015-2025, Julien Coupey.
 All rights reserved (see LICENSE).
 
 */
@@ -57,7 +57,7 @@ std::string ValhallaWrapper::get_matrix_query(
 
 std::string
 ValhallaWrapper::get_route_query(const std::vector<Location>& locations) const {
-  // Building matrix query for Valhalla.
+  // Building route query for Valhalla.
   std::string query =
     "GET /" + _server.path + _route_service + "?json={\"locations\":[";
 

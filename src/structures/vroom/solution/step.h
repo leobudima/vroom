@@ -5,7 +5,7 @@
 
 This file is part of VROOM.
 
-Copyright (c) 2015-2024, Julien Coupey.
+Copyright (c) 2015-2025, Julien Coupey.
 All rights reserved (see LICENSE).
 
 */
@@ -38,7 +38,7 @@ struct Step {
 
   Step(STEP_TYPE type, Location location, Amount load);
 
-  Step(const Job& job, UserDuration setup, Amount load);
+  Step(const Job& job, UserDuration setup, UserDuration service, Amount load);
 
   Step(const Break& b, Amount load);
 

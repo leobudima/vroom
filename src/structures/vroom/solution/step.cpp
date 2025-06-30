@@ -2,7 +2,7 @@
 
 This file is part of VROOM.
 
-Copyright (c) 2015-2024, Julien Coupey.
+Copyright (c) 2015-2025, Julien Coupey.
 All rights reserved (see LICENSE).
 
 */
@@ -21,13 +21,16 @@ Step::Step(STEP_TYPE type, Location location, Amount load)
   assert(step_type == STEP_TYPE::START || step_type == STEP_TYPE::END);
 }
 
-Step::Step(const Job& job, const UserDuration setup, Amount load)
+Step::Step(const Job& job,
+           const UserDuration setup,
+           const UserDuration service,
+           Amount load)
   : step_type(STEP_TYPE::JOB),
     job_type(job.type),
     location(job.location),
     id(job.id),
     setup(setup),
-    service(utils::scale_to_user_duration(job.service)),
+    service(service),
     load(std::move(load)),
     description(job.description) {
 }

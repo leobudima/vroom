@@ -2,7 +2,7 @@
 
 This file is part of VROOM.
 
-Copyright (c) 2015-2024, Julien Coupey.
+Copyright (c) 2015-2025, Julien Coupey.
 All rights reserved (see LICENSE).
 
 */
@@ -33,7 +33,7 @@ template <class Route>
 ThreeInsertions find_top_3_insertions(const Input& input,
                                       Index j,
                                       const Route& r) {
-  const auto& v = input.vehicles[r.vehicle_rank];
+  const auto& v = input.vehicles[r.v_rank];
 
   auto best_insertions = empty_three_insertions;
 

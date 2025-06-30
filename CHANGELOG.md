@@ -4,6 +4,10 @@
 
 ### Added
 
+#### Features
+
+- Ability to set different tasks setup/service time per vehicle type (#336)
+
 #### Internals
 
 - Apply heuristics to partial solutions provided in input (#977)
@@ -14,6 +18,7 @@
 #### Internals
 
 - Bypass matrix request in `plan` mode (#444)
+- Heuristics speed-up (#1219)
 - Account for heuristic time in timeout (#1196)
 - Refactor heuristics to reduce code duplication (#1181)
 - Refactor `Matrix` template class (#1089)
@@ -31,8 +36,12 @@
 - Speed up OSRM build (#1096)
 - Update Ubuntu image to 24.04 (#1080)
 - `vroom` workflow uses g++-14 and clang++-18 (#1080)
-- `vroom + libosrm` workflow uses g++-13 and clang++-17 (#1080)
+- `vroom + libosrm` workflow uses g++-14 and clang++-18 (#1234)
 - Update clang-format to 18 (#1148)
+
+#### Dependency
+
+- Update `LibosrmWrapper` to breaking change introduced in OSRM v6 (#1234)
 
 ### Fixed
 
@@ -46,6 +55,8 @@
 - Capacity array check consistency (#1086)
 - Segfault when using the C++ API with empty vehicles (#1187)
 - Solution "shadowing" when only comparing indicators (#1199)
+- Too loose `max_tasks` bound derived from TW (#1243)
+- Wrong evaluation in `ReverseTwoOpt` (#1271)
 
 #### Internals
 
