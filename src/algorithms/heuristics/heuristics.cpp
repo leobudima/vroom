@@ -811,6 +811,38 @@ void set_route(const Input& input,
       std::format("Route over max_distance for vehicle {}.", vehicle.id));
   }
 
+  // Check route duration constraint (travel + setup + service times) - only if configured
+  if (vehicle.max_route_duration != DEFAULT_MAX_ROUTE_DURATION) {
+    Duration total_setup = 0;
+    Duration total_service = 0;
+    Duration total_break_service = 0;
+    std::optional<Index> prev_index = vehicle.has_start() 
+                                     ? std::optional<Index>(vehicle.start.value().index())
+                                     : std::optional<Index>();
+    
+    for (const auto job_rank : job_ranks) {
+      const auto& job = input.jobs[job_rank];
+      // Setup time: needed if moving from different location
+      if (!prev_index.has_value() || prev_index.value() != job.index()) {
+        total_setup += job.setups[vehicle.type];
+      }
+      total_service += job.services[vehicle.type];
+      prev_index = job.index();
+    }
+    
+    // Add break service times
+    for (const auto& step : vehicle.steps) {
+      if (step.type == STEP_TYPE::BREAK) {
+        total_break_service += vehicle.breaks[step.rank].service;
+      }
+    }
+    
+    if (!vehicle.ok_for_route_duration(eval_sum.duration, total_setup, total_service, total_break_service)) {
+      throw InputException(
+        std::format("Route over max_route_duration for vehicle {}.", vehicle.id));
+    }
+  }
+
   if (vehicle.max_tasks < job_ranks.size()) {
     throw InputException(
       std::format("Too many tasks for vehicle {}.", vehicle.id));
@@ -821,7 +853,7 @@ void set_route(const Input& input,
       std::format("Invalid shipment in route for vehicle {}.", vehicle.id));
   }
 
-  // Now route is OK with regard to capacity, max_travel_time,
+  // Now route is OK with regard to capacity, max_travel_time, max_route_duration,
   // max_tasks, precedence and skills constraints.
   if (!job_ranks.empty()) {
     if (!route.is_valid_addition_for_tw(input,

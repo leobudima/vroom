@@ -60,6 +60,7 @@ struct Vehicle {
   CostWrapper cost_wrapper;
   size_t max_tasks;
   const Duration max_travel_time;
+  const Duration max_route_duration;
   const Distance max_distance;
   const bool has_break_max_load;
   std::vector<VehicleStep> steps;
@@ -81,6 +82,8 @@ struct Vehicle {
     double speed_factor = 1.,
     const std::optional<size_t>& max_tasks = std::optional<size_t>(),
     const std::optional<UserDuration>& max_travel_time =
+      std::optional<UserDuration>(),
+    const std::optional<UserDuration>& max_route_duration =
       std::optional<UserDuration>(),
     const std::optional<UserDistance>& max_distance =
       std::optional<UserDistance>(),
@@ -122,6 +125,12 @@ struct Vehicle {
     return d <= max_travel_time;
   }
 
+  bool ok_for_route_duration(Duration travel_time, Duration setup_time, 
+                            Duration service_time, Duration break_time = 0) const {
+    assert(0 <= travel_time && 0 <= setup_time && 0 <= service_time && 0 <= break_time);
+    return (travel_time + setup_time + service_time + break_time) <= max_route_duration;
+  }
+
   bool ok_for_distance(Distance d) const {
     assert(0 <= d);
     return d <= max_distance;
@@ -141,15 +150,17 @@ struct Vehicle {
     //   - decreasing max_tasks
     //   - decreasing capacity
     //   - decreasing TW length
-    //   - decreasing range (max travel time and distance)
+    //   - decreasing range (max travel time, route duration, and distance)
     return std::tie(rhs.max_tasks,
                     rhs.capacity,
                     rhs.tw.length,
                     rhs.max_travel_time,
+                    rhs.max_route_duration,
                     rhs.max_distance) < std::tie(lhs.max_tasks,
                                                  lhs.capacity,
                                                  lhs.tw.length,
                                                  lhs.max_travel_time,
+                                                 lhs.max_route_duration,
                                                  lhs.max_distance);
   }
 };

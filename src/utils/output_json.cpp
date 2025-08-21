@@ -54,6 +54,9 @@ get_violations(const Violations& violations,
     case MAX_TRAVEL_TIME:
       cause = "max_travel_time";
       break;
+    case MAX_ROUTE_DURATION:
+      cause = "max_route_duration";
+      break;
     case MAX_LOAD:
       cause = "max_load";
       break;
