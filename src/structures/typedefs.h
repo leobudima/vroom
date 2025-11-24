@@ -74,6 +74,7 @@ constexpr Cost COST_FACTOR = 3600;
 // outputting exact same values for duration and cost if per_hour
 // values are not set.
 constexpr UserCost DEFAULT_COST_PER_HOUR = 3600;
+constexpr UserCost DEFAULT_COST_PER_TASK_HOUR = 0;
 constexpr UserCost DEFAULT_COST_PER_KM = 0;
 
 constexpr Priority MAX_PRIORITY = 1000;
@@ -82,6 +83,7 @@ constexpr unsigned MAX_EXPLORATION_LEVEL = 5;
 
 constexpr unsigned DEFAULT_EXPLORATION_LEVEL = 5;
 constexpr unsigned DEFAULT_THREADS_NUMBER = 4;
+constexpr unsigned MAX_ROUTING_THREADS = 32;
 
 constexpr auto DEFAULT_MAX_TASKS = std::numeric_limits<size_t>::max();
 constexpr auto DEFAULT_MAX_TRAVEL_TIME = std::numeric_limits<Duration>::max();
@@ -176,29 +178,6 @@ enum OperatorName : std::uint8_t {
   TSPFix,
   MAX
 };
-
-#ifdef LOG_LS
-const std::array<std::string, OperatorName::MAX>
-  OPERATOR_NAMES({"UnassignedExchange",
-                  "CrossExchange",
-                  "MixedExchange",
-                  "TwoOpt",
-                  "ReverseTwoOpt",
-                  "Relocate",
-                  "OrOpt",
-                  "IntraExchange",
-                  "IntraCrossExchange",
-                  "IntraMixedExchange",
-                  "IntraRelocate",
-                  "IntraOrOpt",
-                  "IntraTwoOpt",
-                  "PDShift",
-                  "RouteExchange",
-                  "SwapStar",
-                  "RouteSplit",
-                  "PriorityReplace",
-                  "TSPFix"});
-#endif
 
 // Defined based on
 // https://sonarcloud.io/organizations/vroom-project/rules?open=cpp%3AS6045&rule_key=cpp%3AS6045

@@ -39,6 +39,8 @@ private:
   TimePoint _end_solving;
   TimePoint _end_routing;
   std::unordered_set<std::string, StringHash, std::equal_to<>> _profiles;
+  std::unordered_set<std::string, StringHash, std::equal_to<>>
+    _profiles_requiring_distances;
   std::vector<std::unique_ptr<routing::Wrapper>> _routing_wrappers;
   bool _apply_TSPFix;
   bool _no_addition_yet{true};
@@ -206,17 +208,13 @@ public:
   Solution solve(unsigned nb_searches,
                  unsigned depth,
                  unsigned nb_thread,
-                 const Timeout& timeout = Timeout(),
-                 const std::vector<HeuristicParameters>& h_param =
-                   std::vector<HeuristicParameters>());
+                 const Timeout& timeout = Timeout());
 
   // Overload designed to expose the same interface as the `-x`
   // command-line flag for out-of-the-box setup of exploration level.
   Solution solve(unsigned exploration_level,
                  unsigned nb_thread,
-                 const Timeout& timeout = Timeout(),
-                 const std::vector<HeuristicParameters>& h_param =
-                   std::vector<HeuristicParameters>());
+                 const Timeout& timeout = Timeout());
 
   Solution check(unsigned nb_thread);
 };
