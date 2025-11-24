@@ -1,0 +1,35 @@
+{
+  "vehicles": [
+    {
+      "id": 1,
+      "start": [2.35044, 48.71764],
+      "end": [2.35044, 48.71764],
+      "max_route_duration": 10800,
+      "capacity": [10],
+      "description": "Vehicle with reasonable route duration limit (3 hours)"
+    }
+  ],
+  "jobs": [
+    {
+      "id": 1,
+      "service": 300,
+      "delivery": [1],
+      "location": [2.03655, 48.61128],
+      "description": "Job with 5 minutes service time"
+    },
+    {
+      "id": 2,
+      "service": 300,
+      "delivery": [1],
+      "location": [2.28325, 48.5958],
+      "description": "Another job with 5 minutes service time"
+    },
+    {
+      "id": 3,
+      "service": 450,
+      "delivery": [2],
+      "location": [2.41808, 49.22619],
+      "description": "Job with 7.5 minutes service time"
+    }
+  ]
+}

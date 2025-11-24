@@ -1,0 +1,89 @@
+{
+  "vehicles": [
+    {
+      "id": 1,
+      "start": [2.35044, 48.71764],
+      "end": [2.35044, 48.71764],
+      "max_route_duration": 3600,
+      "capacity": [10],
+      "time_window": [1600416000, 1600430400],
+      "breaks": [
+        {
+          "id": 1,
+          "service": 900,
+          "time_windows": [
+            [1600420000, 1600425000]
+          ],
+          "description": "15 minute break"
+        }
+      ],
+      "description": "Vehicle with 1 hour route limit including break time"
+    },
+    {
+      "id": 2,
+      "start": [2.35044, 48.71764],
+      "end": [2.35044, 48.71764],
+      "max_route_duration": 7200,
+      "capacity": [15],
+      "time_window": [1600416000, 1600430400],
+      "breaks": [
+        {
+          "id": 2,
+          "service": 600,
+          "time_windows": [
+            [1600419000, 1600422000]
+          ],
+          "description": "10 minute break"
+        },
+        {
+          "id": 3,
+          "service": 900,
+          "time_windows": [
+            [1600424000, 1600427000]
+          ],
+          "description": "15 minute break"
+        }
+      ],
+      "description": "Vehicle with 2 hour route limit including multiple breaks"
+    }
+  ],
+  "jobs": [
+    {
+      "id": 1,
+      "service": 1200,
+      "delivery": [2],
+      "location": [2.03655, 48.61128],
+      "time_windows": [
+        [1600418000, 1600428000]
+      ],
+      "description": "20 minute service job"
+    },
+    {
+      "id": 2,
+      "service": 600,
+      "delivery": [1],
+      "location": [2.28325, 48.5958],
+      "time_windows": [
+        [1600417000, 1600429000]
+      ],
+      "description": "10 minute service job"
+    },
+    {
+      "id": 3,
+      "service": 900,
+      "delivery": [2],
+      "location": [2.41808, 49.22619],
+      "time_windows": [
+        [1600416500, 1600428500]
+      ],
+      "description": "15 minute service job"
+    },
+    {
+      "id": 4,
+      "service": 450,
+      "delivery": [1],
+      "location": [2.89357, 48.90736],
+      "description": "7.5 minute service job"
+    }
+  ]
+}

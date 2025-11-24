@@ -1282,6 +1282,15 @@ Route choose_ETA(const Input& input,
         current.violations.types.insert(VIOLATION::MAX_DISTANCE);
         v_types.insert(VIOLATION::MAX_DISTANCE);
       }
+      // Check route duration constraint (travel + setup + service + waiting time) - only if configured
+      if (v.max_route_duration != DEFAULT_MAX_ROUTE_DURATION &&
+          !v.ok_for_route_duration(utils::scale_from_user_duration(user_duration),
+                                   utils::scale_from_user_duration(setup),
+                                   utils::scale_from_user_duration(service),
+                                   utils::scale_from_user_duration(user_waiting_time))) {
+        current.violations.types.insert(VIOLATION::MAX_ROUTE_DURATION);
+        v_types.insert(VIOLATION::MAX_ROUTE_DURATION);
+      }
 
       switch (job.type) {
       case JOB_TYPE::SINGLE:
@@ -1393,6 +1402,15 @@ Route choose_ETA(const Input& input,
         current.violations.types.insert(VIOLATION::MAX_LOAD);
         v_types.insert(VIOLATION::MAX_LOAD);
       }
+      // Check route duration constraint (travel + setup + service + waiting time) - only if configured
+      if (v.max_route_duration != DEFAULT_MAX_ROUTE_DURATION &&
+          !v.ok_for_route_duration(utils::scale_from_user_duration(user_duration),
+                                   utils::scale_from_user_duration(setup),
+                                   utils::scale_from_user_duration(service),
+                                   utils::scale_from_user_duration(user_waiting_time))) {
+        current.violations.types.insert(VIOLATION::MAX_ROUTE_DURATION);
+        v_types.insert(VIOLATION::MAX_ROUTE_DURATION);
+      }
 
       previous_start = service_start;
       previous_action = b.service;
@@ -1440,6 +1458,14 @@ Route choose_ETA(const Input& input,
       if (!v.ok_for_distance(end_step.distance)) {
         end_step.violations.types.insert(VIOLATION::MAX_DISTANCE);
         v_types.insert(VIOLATION::MAX_DISTANCE);
+      }
+      // Check route duration constraint (travel + setup + service + waiting time)
+      if (!v.ok_for_route_duration(utils::scale_from_user_duration(user_duration),
+                                   utils::scale_from_user_duration(setup),
+                                   utils::scale_from_user_duration(service),
+                                   utils::scale_from_user_duration(user_waiting_time))) {
+        end_step.violations.types.insert(VIOLATION::MAX_ROUTE_DURATION);
+        v_types.insert(VIOLATION::MAX_ROUTE_DURATION);
       }
 
       break;

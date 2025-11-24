@@ -77,7 +77,7 @@ constexpr UserCost DEFAULT_COST_PER_HOUR = 3600;
 constexpr UserCost DEFAULT_COST_PER_TASK_HOUR = 0;
 constexpr UserCost DEFAULT_COST_PER_KM = 0;
 
-constexpr Priority MAX_PRIORITY = 1000;
+constexpr Priority MAX_PRIORITY = 10000;
 constexpr double MAX_SPEED_FACTOR = 5.0;
 constexpr unsigned MAX_EXPLORATION_LEVEL = 5;
 
@@ -87,6 +87,7 @@ constexpr unsigned MAX_ROUTING_THREADS = 32;
 
 constexpr auto DEFAULT_MAX_TASKS = std::numeric_limits<size_t>::max();
 constexpr auto DEFAULT_MAX_TRAVEL_TIME = std::numeric_limits<Duration>::max();
+constexpr auto DEFAULT_MAX_ROUTE_DURATION = std::numeric_limits<Duration>::max();
 constexpr auto DEFAULT_MAX_DISTANCE = std::numeric_limits<Distance>::max();
 
 // Available routing engines.
@@ -152,6 +153,7 @@ enum class VIOLATION : std::uint8_t {
   PRECEDENCE,
   MISSING_BREAK,
   MAX_TRAVEL_TIME,
+  MAX_ROUTE_DURATION,
   MAX_LOAD,
   MAX_DISTANCE
 };

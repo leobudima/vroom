@@ -1,0 +1,64 @@
+{
+  "vehicles": [
+    {
+      "id": 1,
+      "type": "truck",
+      "start": [2.35044, 48.71764],
+      "end": [2.35044, 48.71764],
+      "max_route_duration": 5400,
+      "capacity": [15],
+      "description": "Truck with 1.5 hour route duration limit"
+    },
+    {
+      "id": 2,
+      "type": "van",
+      "start": [2.35044, 48.71764],
+      "end": [2.35044, 48.71764],
+      "max_route_duration": 7200,
+      "capacity": [10],
+      "description": "Van with 2 hour route duration limit"
+    }
+  ],
+  "jobs": [
+    {
+      "id": 1,
+      "setup": 300,
+      "service": 600,
+      "setup_per_type": {
+        "truck": 600,
+        "van": 180
+      },
+      "service_per_type": {
+        "truck": 900,
+        "van": 450
+      },
+      "delivery": [2],
+      "location": [2.03655, 48.61128],
+      "description": "Job with different setup/service times per vehicle type"
+    },
+    {
+      "id": 2,
+      "setup": 240,
+      "service": 480,
+      "setup_per_type": {
+        "truck": 480,
+        "van": 120
+      },
+      "service_per_type": {
+        "truck": 720,
+        "van": 360
+      },
+      "delivery": [1],
+      "location": [2.28325, 48.5958],
+      "description": "Another job with type-specific durations"
+    },
+    {
+      "id": 3,
+      "setup": 180,
+      "service": 540,
+      "delivery": [2],
+      "location": [2.89357, 48.90736],
+      "description": "Job using default setup and service times"
+    }
+  ]
+}
